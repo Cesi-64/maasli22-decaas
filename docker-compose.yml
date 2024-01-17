@@ -1,0 +1,39 @@
+version: '3.9'
+
+services:
+  bdd:
+    container_name: maalsi22-bdd
+    restart: always
+    image: mysql:latest
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: toor
+      MYSQL_DATABASE: trucmuch
+      MYSQL_USER: machin
+      MYSQL_PASSWORD: chouette
+    profiles: [test, prod]
+
+  api:
+    depends_on:
+      - bdd
+    container_name: maalsi22-api
+    image: maalsi22-apiuser
+    restart: always
+    ports:
+      - 9999:60000
+    environment:
+      DB_HOST: bdd
+      DB_NAME: trucmuch
+      DB_USER: machin
+      DB_PASS: chouette
+    profiles: [test, prod]
+
+  adminer:
+    container_name: maalsi22-adminer
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    profiles: [test]
+    
