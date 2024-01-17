@@ -45,8 +45,14 @@ jobs:
             - name: Install Dep
               run: npm i
 
+            - name: Init Database
+              run: npm run test:file init_bdd
+
             - name: Run Main Test
-              run: npm run test:file main
+              run: npm run test:file main_route
+
+            - name: Run User Test
+              run: npm run test:file user_route
 
     deploy:
         needs: [routage]
