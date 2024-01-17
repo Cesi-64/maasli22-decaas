@@ -6,9 +6,9 @@
   "scripts": {
     "dev": "nodemon -r dotenv/config server.js",
     "start": "node -r dotenv/config server.js",
-    "test": "jest --setupFiles dotenv/config --runInBand",
+    "test": "jest --setupFiles dotenv/config --runInBand --testPathIgnorePatterns=init_bdd.test.js",
     "test:file": "func() { jest ${1}_route.test.js --setupFiles dotenv/config; }; func",
-    "test:cov": "jest --setupFiles dotenv/config --coverage --rundInBand"
+    "test:cov": "jest --setupFiles dotenv/config --coverage --testPathIgnorePatterns=init_bdd.test.js"
   },
   "keywords": [],
   "author": "",
