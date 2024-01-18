@@ -39,4 +39,4 @@ jobs:
 
                 script: |
                     docker pull senseo/apiuser:pr-12
-                    docker-compose up -d
+                    docker-compose --profile prod up -d
