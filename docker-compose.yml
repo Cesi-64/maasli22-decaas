@@ -18,7 +18,7 @@ services:
     depends_on:
       - bdd
     container_name: maalsi22-api
-    image: maalsi22-apiuser
+    image: senseo/apiuser
     restart: always
     ports:
       - 9999:60000

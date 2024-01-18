@@ -3,7 +3,7 @@ const { DataTypes } = require('sequelize')
 
 /** Def model */
 module.exports = (sequelize) => {
-    const User = sequelize.define('User', {
+    return sequelize.define('User', {
         id: {
             type: DataTypes.INTEGER(10),
             primaryKey: true,
@@ -20,6 +20,4 @@ module.exports = (sequelize) => {
             allowNull: false
         }
     })
-
-    return User
 }

@@ -1,0 +1,42 @@
+name: Deploy DOCker
+
+on:
+    workflow_call
+
+jobs:
+    compose:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+            
+            - name: Copy Compose
+              uses: appleboy/scp-action@v0.1.4
+              with:
+                host: ${{ secrets.LERETOUR_HOST }}
+                port: ${{ secrets.LERETOUR_PORT }}
+
+                username: ${{ secrets.LERETOUR_LOGIN }}
+                password: ${{ secrets.LERETOUR_PASSWORD }}
+
+                source: "./docker-compose.yml"
+                target: "."
+
+    pull:
+        needs: [compose]
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Server Update
+              uses: appleboy/ssh-action@master
+              with:
+                host: ${{ secrets.LERETOUR_HOST }}
+                port: ${{ secrets.LERETOUR_PORT }}
+
+                username: ${{ secrets.LERETOUR_LOGIN }}
+                password: ${{ secrets.LERETOUR_PASSWORD }}
+
+                script: |
+                    docker pull senseo/apiuser:pr-12
+                    docker-compose up -d

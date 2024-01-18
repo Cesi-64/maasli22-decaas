@@ -1,0 +1,6 @@
+projectKey=roger
+serverUrl=https://sonarqube.arocode.com
+serverVersion=8.7.1.42226
+dashboardUrl=https://sonarqube.arocode.com/dashboard?id=roger
+ceTaskId=AY0bu02ZA-nNTDpB2bl6
+ceTaskUrl=https://sonarqube.arocode.com/api/ce/task?id=AY0bu02ZA-nNTDpB2bl6
