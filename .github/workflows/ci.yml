@@ -54,6 +54,23 @@ jobs:
             - name: Run User Test
               run: npm run test:file user_route
 
+    sonar:
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v3
+          with:
+            fetch-depth: 0
+
+        - name: Sonar test
+          uses: docker://sonarsource/sonar-scanner-cli:latest
+          env:
+            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+            SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+          
+
+
     docker:
       needs: [routage]
       runs-on: ubuntu-latest
